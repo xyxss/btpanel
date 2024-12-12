@@ -31,3 +31,14 @@ curl -sSO https://raw.githubusercontent.com/shidahuilang/btpanel/main/one_key_ha
 wget -N --no-check-certificate https://raw.githubusercontent.com/shidahuilang/btpanel/main/LocaleCN.sh && bash LocaleCN.sh
 ```
 开心版安装完成后使用 bt 命令可能出现报错，只需要将终端设置为中文语言即可。（可以查阅LocaleCN.sh文件中对应系统的修改命令，先备份好原始文件，然后使用该命令修改语言并重启，尝试 bt 命令正常后，再恢复原有语言文件。这样做的目的是因为在后期使用时个别程序会因为语言不一致，而导致程序无法正常运行。）
+
+
+手动解锁宝塔所有付费插件为永不过期
+文件路径：`www/server/panel/data/plugin.json`
+
+搜索字符串：`"endtime"`: -1 全部替换为 `"endtime": 999999999999`
+
+手动阻止解锁插件后自动修复为免费版
+```
+chattr +i /www/server/panel/data/plugin.json
+```
